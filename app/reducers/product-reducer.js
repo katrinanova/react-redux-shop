@@ -11,6 +11,7 @@ const initialState = {
   id: 5,
 };
 
+
 const productReducer = function(state = JSON.parse(localStorage.getItem("productState")) || initialState, action) {
 
   var newProducts = Object.assign({}, state.products);

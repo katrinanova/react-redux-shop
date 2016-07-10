@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack",
-    "test": "mocha --compilers js:babel-register --recursive",
+    "test": "mocha -r mock-local-storage --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch"
   },
   "keywords": [],
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "babel-register": "^6.9.0",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "mock-local-storage": "^1.0.2"
   }
 }
