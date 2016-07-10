@@ -37,7 +37,7 @@ const productReducer = function(state = JSON.parse(localStorage.getItem("product
       newProducts[action.id] = product;
 
       var newState = Object.assign({}, state, {products: newProducts});
-      localStorage.setItem("productState", JSON.stringify(newState))
+      localStorage.setItem("productState", JSON.stringify(newState));
 
       return newState;
   }

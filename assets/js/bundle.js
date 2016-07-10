@@ -28258,10 +28258,10 @@
 	    { className: 'app' },
 	    _react2.default.createElement(
 	      'header',
-	      { className: 'header' },
+	      { className: 'header group' },
 	      _react2.default.createElement(
 	        'ul',
-	        { className: 'header-links' },
+	        { className: 'header-links group' },
 	        _react2.default.createElement(
 	          'li',
 	          null,

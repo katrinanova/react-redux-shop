@@ -17,14 +17,14 @@ const AddProductFormContainer = React.createClass({
     var product = this.refs.child.getProduct();
 
     if (product.name && product.price){
-      store.dispatch(addProduct(product))
+      store.dispatch(addProduct(product));
       hashHistory.push("/");
     } else {
-      var errorMessage
+      var errorMessage;
       if (!product.name && !product.price){
         this.setState({errorMessage: "Name or Price can not be blank"});
       } else if (!product.name){
-        this.setState({errorMessage: "Name can not be blank"})
+        this.setState({errorMessage: "Name can not be blank"});
       } else {
         this.setState({errorMessage: "Price can not be blank"});
       }
