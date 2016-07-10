@@ -193,3 +193,20 @@ td.name-cell {
   margin: 0 auto;
   font-style: italic;
 }
+
+
+
+/****************************************
+  Mobile / Responsive
+*****************************************/
+
+@media screen and (max-width: 850px) {
+  .app {
+    width: 100%;
+  }
+
+@media screen and (max-width: 587px) {
+  .products-table {
+    width: calc(100% - 40px);
+    padding: 20px;
+  }
