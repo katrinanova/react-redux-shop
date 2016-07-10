@@ -6,9 +6,9 @@ export default function(props) {
     <div className="app">
       <header className="header">
         <ul className="header-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/product_form">Add New Product</Link></li>
-          <li><Link to="/selected-products">Selected Products</Link></li>
+          <li><Link to="/" activeClassName="active">Home</Link></li>
+          <li><Link to="/product_form" activeClassName="active">Add New Product</Link></li>
+          <li><Link to="/selected-products" activeClassName="active">Selected Products</Link></li>
         </ul>
       </header>
       <main>

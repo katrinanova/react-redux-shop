@@ -5,7 +5,7 @@ const initialState = {
   id: 0,
 };
 
-const productReducer = function(initialState, action) {
+const productReducer = function(state = initialState, action) {
 
   var newProducts = Object.assign({}, state.products);
 
@@ -29,9 +29,9 @@ const productReducer = function(initialState, action) {
       product.selected = !product.selected;
       newProducts[action.id] = product;
 
-      var newState = Object.assign({}, state, {products: newProducts})
+      var newState = Object.assign({}, state, {products: newProducts});
 
-      return newState
+      return newState;
   }
 
   return state;

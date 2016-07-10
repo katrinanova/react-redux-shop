@@ -22702,7 +22702,10 @@
 	  id: 0
 	};
 	
-	var productReducer = function productReducer(initialState, action) {
+	var productReducer = function productReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
 	
 	  var newProducts = Object.assign({}, state.products);
 	
@@ -22762,9 +22765,35 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
+	var _layout = __webpack_require__(258);
+	
+	var _layout2 = _interopRequireDefault(_layout);
+	
+	var _productListContainer = __webpack_require__(259);
+	
+	var _productListContainer2 = _interopRequireDefault(_productListContainer);
+	
+	var _selectedListContainer = __webpack_require__(262);
+	
+	var _selectedListContainer2 = _interopRequireDefault(_selectedListContainer);
+	
+	var _addProductFormContainer = __webpack_require__(263);
+	
+	var _addProductFormContainer2 = _interopRequireDefault(_addProductFormContainer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory });
+	exports.default = _react2.default.createElement(
+	  _reactRouter.Router,
+	  { history: _reactRouter.hashHistory },
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { component: _layout2.default },
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _productListContainer2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/selected-products', component: _selectedListContainer2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/product_form', component: _addProductFormContainer2.default })
+	  )
+	);
 
 /***/ },
 /* 198 */
@@ -28205,6 +28234,404 @@
 	
 	exports.default = (0, _createRouterHistory2.default)(_createHashHistory2.default);
 	module.exports = exports['default'];
+
+/***/ },
+/* 258 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function (props) {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'app' },
+	    _react2.default.createElement(
+	      'header',
+	      { className: 'header' },
+	      _react2.default.createElement(
+	        'ul',
+	        { className: 'header-links' },
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/', activeClassName: 'active' },
+	            'Home'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/product_form', activeClassName: 'active' },
+	            'Add New Product'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/selected-products', activeClassName: 'active' },
+	            'Selected Products'
+	          )
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'main',
+	      null,
+	      props.children
+	    )
+	  );
+	};
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _productList = __webpack_require__(260);
+	
+	var _productList2 = _interopRequireDefault(_productList);
+	
+	var _store = __webpack_require__(194);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _productActions = __webpack_require__(261);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ProductListContainer = _react2.default.createClass({
+	  displayName: 'ProductListContainer',
+	
+	  toggleSelected: function toggleSelected(id) {
+	    _store2.default.dispatch((0, _productActions.toggleSelected)(id));
+	  },
+	
+	  render: function render() {
+	    var _this = this;
+	
+	    var products = Object.keys(this.props.products).map(function (key) {
+	      return _this.props.products[key];
+	    });
+	    return _react2.default.createElement(_productList2.default, { products: products, title: "All Listed Products", toggleSelected: this.toggleSelected });
+	  }
+	
+	});
+	
+	var mapStateToProps = function mapStateToProps(store) {
+	  return {
+	    products: store.productState.products
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(ProductListContainer);
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function (props) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "products-table" },
+	    _react2.default.createElement(
+	      "h1",
+	      null,
+	      props.title
+	    ),
+	    _react2.default.createElement(
+	      "table",
+	      null,
+	      _react2.default.createElement(
+	        "tbody",
+	        null,
+	        _react2.default.createElement(
+	          "tr",
+	          null,
+	          _react2.default.createElement(
+	            "th",
+	            null,
+	            "Name"
+	          ),
+	          _react2.default.createElement(
+	            "th",
+	            null,
+	            "Price"
+	          )
+	        ),
+	        props.products.map(function (product) {
+	          return _react2.default.createElement(
+	            "tr",
+	            { key: product.id, className: "product-row" },
+	            _react2.default.createElement(
+	              "td",
+	              { className: "name-cell" },
+	              product.name
+	            ),
+	            _react2.default.createElement(
+	              "td",
+	              { className: "price-cell" },
+	              product.price
+	            ),
+	            _react2.default.createElement(
+	              "td",
+	              { className: "button-cell" },
+	              _react2.default.createElement(
+	                "button",
+	                { onClick: props.toggleSelected.bind(null, product.id) },
+	                product.selected ? 'Remove From Selected' : 'Add To Selected'
+	              )
+	            )
+	          );
+	        })
+	      )
+	    )
+	  );
+	};
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.addProduct = addProduct;
+	exports.toggleSelected = toggleSelected;
+	
+	var _actionTypes = __webpack_require__(196);
+	
+	var types = _interopRequireWildcard(_actionTypes);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function addProduct(product) {
+	  return {
+	    type: types.ADD_PRODUCT,
+	    product: product
+	  };
+	}
+	
+	function toggleSelected(id) {
+	  return {
+	    type: types.TOGGLE_SELECTED,
+	    id: id
+	  };
+	}
+
+/***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(172);
+	
+	var _productList = __webpack_require__(260);
+	
+	var _productList2 = _interopRequireDefault(_productList);
+	
+	var _store = __webpack_require__(194);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _productActions = __webpack_require__(261);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var SelectedListContainer = _react2.default.createClass({
+	  displayName: 'SelectedListContainer',
+	
+	
+	  toggleSelected: function toggleSelected(id) {
+	    _store2.default.dispatch((0, _productActions.toggleSelected)(id));
+	  },
+	
+	  render: function render() {
+	    var _this = this;
+	
+	    var products = Object.keys(this.props.products).map(function (key) {
+	      return _this.props.products[key];
+	    });
+	    var selectedProducts = [];
+	    products.forEach(function (product) {
+	      if (product.selected) {
+	        selectedProducts.push(product);
+	      };
+	    });
+	
+	    return _react2.default.createElement(_productList2.default, { products: selectedProducts, title: "Selected Products", toggleSelected: this.toggleSelected });
+	  }
+	});
+	
+	var mapStateToProps = function mapStateToProps(store) {
+	  return {
+	    products: store.productState.products
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SelectedListContainer);
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _addProductForm = __webpack_require__(264);
+	
+	var _addProductForm2 = _interopRequireDefault(_addProductForm);
+	
+	var _store = __webpack_require__(194);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _productActions = __webpack_require__(261);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var AddProductFormContainer = _react2.default.createClass({
+	  displayName: 'AddProductFormContainer',
+	
+	
+	  addProduct: function addProduct(event) {
+	    event.preventDefault();
+	
+	    var product = this.refs.child.getProduct();
+	
+	    _store2.default.dispatch((0, _productActions.addProduct)(product));
+	    _reactRouter.hashHistory.push("/");
+	  },
+	
+	  render: function render() {
+	    return _react2.default.createElement(_addProductForm2.default, { addProduct: this.addProduct, ref: 'child' });
+	  }
+	
+	});
+	
+	exports.default = AddProductFormContainer;
+
+/***/ },
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: "add-product-form",
+	
+	
+	  getProduct: function getProduct() {
+	    return {
+	      name: this.refs.name.value,
+	      price: this.refs.price.value
+	    };
+	  },
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      "div",
+	      null,
+	      _react2.default.createElement(
+	        "h1",
+	        null,
+	        " Add New Product "
+	      ),
+	      _react2.default.createElement(
+	        "form",
+	        { className: "add-product-form", onSubmit: this.props.addProduct },
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          "Product Name:",
+	          _react2.default.createElement("input", { type: "text", ref: "name", defaultValue: "" })
+	        ),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          "Product Price $:",
+	          _react2.default.createElement("input", { type: "number", ref: "price", defaultValue: "" })
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          null,
+	          "Add Product"
+	        )
+	      )
+	    );
+	  }
+	
+	});
 
 /***/ }
 /******/ ]);
