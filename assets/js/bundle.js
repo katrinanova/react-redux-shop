@@ -22685,7 +22685,7 @@
 /* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22703,7 +22703,7 @@
 	};
 	
 	var productReducer = function productReducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? JSON.parse(localStorage.getItem("productState")) || initialState : arguments[0];
 	  var action = arguments[1];
 	
 	
@@ -22719,6 +22719,7 @@
 	      newProducts[id] = product;
 	
 	      var newState = Object.assign({}, state, { products: newProducts }, { id: id + 1 });
+	      localStorage.setItem("productState", JSON.stringify(newState));
 	
 	      return newState;
 	
@@ -22728,6 +22729,7 @@
 	      newProducts[action.id] = product;
 	
 	      var newState = Object.assign({}, state, { products: newProducts });
+	      localStorage.setItem("productState", JSON.stringify(newState));
 	
 	      return newState;
 	  }

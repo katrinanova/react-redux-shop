@@ -5,7 +5,7 @@ const initialState = {
   id: 0,
 };
 
-const productReducer = function(state = initialState, action) {
+const productReducer = function(state = JSON.parse(localStorage.getItem("productState")) || initialState, action) {
 
   var newProducts = Object.assign({}, state.products);
 
@@ -19,6 +19,7 @@ const productReducer = function(state = initialState, action) {
       newProducts[id] = product;
 
       var newState = Object.assign({}, state, {products: newProducts}, {id: id + 1});
+      localStorage.setItem("productState", JSON.stringify(newState));
 
       return newState;
 
@@ -30,6 +31,7 @@ const productReducer = function(state = initialState, action) {
       newProducts[action.id] = product;
 
       var newState = Object.assign({}, state, {products: newProducts});
+      localStorage.setItem("productState", JSON.stringify(newState))
 
       return newState;
   }
