@@ -28560,18 +28560,34 @@
 	var AddProductFormContainer = _react2.default.createClass({
 	  displayName: 'AddProductFormContainer',
 	
+	  getInitialState: function getInitialState() {
+	    return {
+	      errorMessage: null
+	    };
+	  },
 	
 	  addProduct: function addProduct(event) {
 	    event.preventDefault();
 	
 	    var product = this.refs.child.getProduct();
 	
-	    _store2.default.dispatch((0, _productActions.addProduct)(product));
-	    _reactRouter.hashHistory.push("/");
+	    if (product.name && product.price) {
+	      _store2.default.dispatch((0, _productActions.addProduct)(product));
+	      _reactRouter.hashHistory.push("/");
+	    } else {
+	      var errorMessage;
+	      if (!product.name && !product.price) {
+	        this.setState({ errorMessage: "Name or Price can not be blank" });
+	      } else if (!product.name) {
+	        this.setState({ errorMessage: "Name can not be blank" });
+	      } else {
+	        this.setState({ errorMessage: "Price can not be blank" });
+	      }
+	    }
 	  },
 	
 	  render: function render() {
-	    return _react2.default.createElement(_addProductForm2.default, { addProduct: this.addProduct, ref: 'child' });
+	    return _react2.default.createElement(_addProductForm2.default, { addProduct: this.addProduct, errorMessage: this.state.errorMessage, ref: 'child' });
 	  }
 	
 	});
@@ -28606,6 +28622,15 @@
 	  },
 	
 	  render: function render() {
+	    if (this.props.errorMessage) {
+	      var errorMessage = _react2.default.createElement(
+	        "h3",
+	        { className: "error-message" },
+	        this.props.errorMessage
+	      );
+	    } else {
+	      var errorMessage = null;
+	    }
 	    return _react2.default.createElement(
 	      "div",
 	      null,
@@ -28614,6 +28639,7 @@
 	        null,
 	        " Add New Product "
 	      ),
+	      errorMessage,
 	      _react2.default.createElement(
 	        "form",
 	        { className: "add-product-form", onSubmit: this.props.addProduct },
