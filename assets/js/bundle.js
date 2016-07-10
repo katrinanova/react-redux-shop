@@ -22698,8 +22698,13 @@
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	var initialState = {
-	  products: {},
-	  id: 0
+	  products: {
+	    1: { id: 1, name: "apple", price: 3, selected: false },
+	    2: { id: 2, name: "herloom tomato", price: 9.75, selected: true },
+	    3: { id: 3, name: "banana", price: 1.50, selected: false },
+	    4: { id: 4, name: "blood orange", price: 2.25, selected: true }
+	  },
+	  id: 5
 	};
 	
 	var productReducer = function productReducer() {

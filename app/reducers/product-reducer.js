@@ -1,8 +1,14 @@
 import * as types from '../actions/action-types';
 
 const initialState = {
-  products: {},
-  id: 0,
+  products:
+    {
+      1: {id: 1, name: "apple", price: 3, selected: false},
+      2: {id: 2, name: "herloom tomato", price: 9.75, selected: true},
+      3: {id: 3, name: "banana", price: 1.50, selected: false},
+      4: {id: 4, name: "blood orange", price: 2.25, selected: true}
+    },
+  id: 5,
 };
 
 const productReducer = function(state = JSON.parse(localStorage.getItem("productState")) || initialState, action) {
