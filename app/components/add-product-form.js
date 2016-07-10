@@ -24,7 +24,7 @@ export default React.createClass({
             <input type="text" ref="name" defaultValue=""/>
           </label>
           <label>Product Price $:
-            <input type="number" ref="price" defaultValue=""/>
+            <input type="number" min="0.25" step="0.25" ref="price" defaultValue=""/>
           </label>
           <button>Add Product</button>
         </form>

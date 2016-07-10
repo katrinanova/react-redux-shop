@@ -28660,7 +28660,7 @@
 	          "label",
 	          null,
 	          "Product Price $:",
-	          _react2.default.createElement("input", { type: "number", ref: "price", defaultValue: "" })
+	          _react2.default.createElement("input", { type: "number", min: "0.25", step: "0.25", ref: "price", defaultValue: "" })
 	        ),
 	        _react2.default.createElement(
 	          "button",
