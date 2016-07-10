@@ -1,6 +1,11 @@
 import React from 'react';
 
 export default function(props) {
+  if (!Object.keys(props.products).length){
+    return (
+      <h1>No products selected</h1>
+    )
+  }
   return (
     <div className="products-table">
       <h1>{props.title}</h1>

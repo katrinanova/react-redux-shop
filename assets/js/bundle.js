@@ -28365,6 +28365,13 @@
 	});
 	
 	exports.default = function (props) {
+	  if (!Object.keys(props.products).length) {
+	    return _react2.default.createElement(
+	      "h1",
+	      null,
+	      "No products selected"
+	    );
+	  }
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "products-table" },
