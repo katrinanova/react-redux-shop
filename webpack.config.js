@@ -10,8 +10,8 @@ module.exports = {
 module.exports = {
     entry: "./app/app.js",
     output: {
-        filename: "assets/js/bundle.js",
-        sourceMapFilename: "assets/js/bundle.map"
+        filename: "public/js/bundle.js",
+        sourceMapFilename: "public/js/bundle.map"
     },
     devtool: '#source-map',
     module: {

@@ -2,7 +2,7 @@ import React from 'react';
 import AddProductForm from './add-product-form';
 import store from '../store';
 import { addProduct } from '../actions/product-actions.js';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 const AddProductFormContainer = React.createClass({
   getInitialState: function(){
@@ -18,7 +18,7 @@ const AddProductFormContainer = React.createClass({
 
     if (product.name && product.price){
       store.dispatch(addProduct(product));
-      hashHistory.push("/");
+      browserHistory.push("/");
     } else {
       var errorMessage;
       if (!product.name && !product.price){

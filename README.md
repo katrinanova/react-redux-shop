@@ -7,7 +7,8 @@ To run the project
 
 ```
 cd react-redux-shop
-python -m SimpleHTTPServer 8000
+npm install
+npm start
 ```
 
 the app will be available at http://localhost:8000/
