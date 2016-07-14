@@ -11,4 +11,4 @@ npm install
 npm start
 ```
 
-the app will be available at http://localhost:8000/
+the app will be available at http://localhost:3000/
