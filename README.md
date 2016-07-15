@@ -3,7 +3,10 @@ A React Redux app split into three parts
 - 2. A list that represents products in the shop
 - 3. A subset list of selected items from the shop
 
-To run the project
+The app is hosted at https://react-redux-simple-shop.herokuapp.com
+
+
+To run project locally
 
 ```
 cd react-redux-shop
