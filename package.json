@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "webpack": "webpack",
     "test": "mocha -r mock-local-storage --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch"
@@ -25,6 +26,10 @@
     "react-router": "^2.5.2",
     "redux": "^3.5.2",
     "webpack": "^1.13.1"
+  },
+    "engines": {
+    "node": "5.7.0",
+    "npm": "3.6.0"
   },
   "devDependencies": {
     "babel-register": "^6.9.0",
