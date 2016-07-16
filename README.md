@@ -6,12 +6,15 @@ A React Redux app split into three parts
 The app is hosted at https://react-redux-simple-shop.herokuapp.com
 
 
+
+
 To run project locally
 
 ```
 cd react-redux-shop
 npm install
-npm start
+npm run webpack
+npm run start
 ```
 
 the app will be available at http://localhost:3000/
